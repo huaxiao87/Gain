@@ -11,14 +11,30 @@
               aaxIdentifier="com.yourcompany.Gain" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
               jucerVersion="4.1.0">
   <MAINGROUP id="xSZ4m1" name="Gain">
+    <GROUP id="{D5023CC6-54EC-163D-9FEE-69E2ECEDCCEC}" name="Includes">
+      <FILE id="JqtlCV" name="AudioFileIf.h" compile="0" resource="0" file="inc/AudioFileIf.h"/>
+      <FILE id="sbjNXv" name="CombFilter.h" compile="0" resource="0" file="inc/CombFilter.h"/>
+      <FILE id="ngKyDg" name="CombFilterIf.h" compile="0" resource="0" file="inc/CombFilterIf.h"/>
+      <FILE id="Uinvgi" name="Dtw.h" compile="0" resource="0" file="inc/Dtw.h"/>
+      <FILE id="YZehef" name="ErrorDef.h" compile="0" resource="0" file="inc/ErrorDef.h"/>
+      <FILE id="z30wdO" name="Lfo.h" compile="0" resource="0" file="inc/Lfo.h"/>
+      <FILE id="Apsa2u" name="MUSI8903Config.h" compile="0" resource="0"
+            file="inc/MUSI8903Config.h"/>
+      <FILE id="NhmkwZ" name="PluginEditor.h" compile="0" resource="0" file="inc/PluginEditor.h"/>
+      <FILE id="bt4Kf3" name="PluginProcessor.h" compile="0" resource="0"
+            file="inc/PluginProcessor.h"/>
+      <FILE id="yd8cuW" name="RingBuffer.h" compile="0" resource="0" file="inc/RingBuffer.h"/>
+      <FILE id="jicDxm" name="Synthesis.h" compile="0" resource="0" file="inc/Synthesis.h"/>
+      <FILE id="BNwgBZ" name="Util.h" compile="0" resource="0" file="inc/Util.h"/>
+      <FILE id="kScw2d" name="Vector.h" compile="0" resource="0" file="inc/Vector.h"/>
+      <FILE id="FNGdDN" name="Vibrato.h" compile="0" resource="0" file="inc/Vibrato.h"/>
+    </GROUP>
     <GROUP id="{F7EA5EEA-7176-CE05-B12F-F2760193D0A2}" name="Source">
+      <FILE id="CDpEOH" name="Vibrato.cpp" compile="1" resource="0" file="Source/Vibrato.cpp"/>
       <FILE id="Xq1Cw0" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
-      <FILE id="XQ7kNi" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
       <FILE id="Ko2NoP" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="C2IoGH" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

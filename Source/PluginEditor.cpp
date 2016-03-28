@@ -19,14 +19,15 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
 	// This is where our plugin’s editor size is set.
-	setSize(200, 200);
+	setSize(800, 480);
 
 	// these define the parameters of our slider object
 
-	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 10, 50, 40, 100);
-	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 70, 50, 40, 100);
-    initializeLabel(m_sliderModulationAmplitude, m_ampLabel, "Amp");
-    initializeLabel(m_sliderModulationFrequency, m_freqLabel, "Freq");
+	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 220, 50, 60, 330);
+	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 520, 50, 60, 330);
+    initializeLabel(m_sliderModulationAmplitude, m_ampLabel, " Amp");
+    initializeLabel(m_sliderModulationFrequency, m_freqLabel, " Freq");
+    initializeButton(m_timeButton, 350, 400);
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -78,7 +79,7 @@ void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, 
 	slider.addListener(this);
 
 	// sets the position and size of the slider with arguments (x, y, width, height)
-	slider.setBounds(x, y, width, getHeight() - 60);
+	slider.setBounds(x, y, width, height);
 }
 
 void GainAudioProcessorEditor::initializeLabel(Slider &slider, Label &label, const String & name)
@@ -86,6 +87,13 @@ void GainAudioProcessorEditor::initializeLabel(Slider &slider, Label &label, con
     addAndMakeVisible (&label);
     label.setText (name, dontSendNotification);
     label.attachToComponent (&slider, false);
+}
+
+void GainAudioProcessorEditor::initializeButton(TextButton &button, int x, int y)
+{
+    addAndMakeVisible (&button);
+    button.setButtonText ("Just a button");
+    button.setBounds(x, y, 100, 40);
 }
 
 

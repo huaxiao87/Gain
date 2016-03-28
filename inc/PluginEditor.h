@@ -30,7 +30,7 @@ public:
     void resized() override;
 
 	void sliderValueChanged(Slider* slider) override;
-	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height);
+	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix);
     void initializeLabel(Slider &slider, Label &label, const String & name);
     void initializeButton(TextButton &button, int x, int y);
     

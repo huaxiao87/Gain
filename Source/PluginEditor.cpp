@@ -23,8 +23,8 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
 
 	// these define the parameters of our slider object
 
-	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 220, 50, 60, 330);
-	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 520, 50, 60, 330);
+	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 220, 50, 60, 330, "amp");
+	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 520, 50, 60, 330, "Hz");
     initializeLabel(m_sliderModulationAmplitude, m_ampLabel, " Amp");
     initializeLabel(m_sliderModulationFrequency, m_freqLabel, " Freq");
     initializeButton(m_timeButton, 350, 400);
@@ -63,7 +63,7 @@ void GainAudioProcessorEditor::sliderValueChanged(Slider* slider)
 	processor.m_fModulationFAmplitude = m_sliderModulationAmplitude.getValue();
 	processor.m_fModulationFrequency = m_sliderModulationFrequency.getValue();
 }
-void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height)
+void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix)
 {
 	slider.setSliderStyle(Slider::LinearBarVertical);
 	slider.setRange(minValue, maxValue, step);
@@ -74,6 +74,8 @@ void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, 
 
 	// this function adds the slider to the editor
 	addAndMakeVisible(&slider);
+    
+    slider.setTextValueSuffix (suffix);
 
 	// add the listener to the slider
 	slider.addListener(this);

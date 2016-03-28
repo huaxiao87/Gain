@@ -56,6 +56,8 @@ public:
 
 	//==============================================================================
 	float m_fVolume;
+	float m_fModulationFAmplitude;
+	float m_fModulationFrequency;
 
 
 private:

@@ -30,8 +30,9 @@ public:
     void resized() override;
 
 	void sliderValueChanged(Slider* slider) override;
-
-	Slider m_sliderVolume;
+	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height);
+	Slider m_sliderModulationAmplitude;
+	Slider m_sliderModulationFrequency;
 
 
 private:

@@ -13,8 +13,6 @@
   <MAINGROUP id="xSZ4m1" name="Gain">
     <GROUP id="{D5023CC6-54EC-163D-9FEE-69E2ECEDCCEC}" name="Includes">
       <FILE id="JqtlCV" name="AudioFileIf.h" compile="0" resource="0" file="inc/AudioFileIf.h"/>
-      <FILE id="sbjNXv" name="CombFilter.h" compile="0" resource="0" file="inc/CombFilter.h"/>
-      <FILE id="ngKyDg" name="CombFilterIf.h" compile="0" resource="0" file="inc/CombFilterIf.h"/>
       <FILE id="Uinvgi" name="Dtw.h" compile="0" resource="0" file="inc/Dtw.h"/>
       <FILE id="YZehef" name="ErrorDef.h" compile="0" resource="0" file="inc/ErrorDef.h"/>
       <FILE id="z30wdO" name="Lfo.h" compile="0" resource="0" file="inc/Lfo.h"/>
@@ -46,20 +44,20 @@
                        isDebug="0" optimisation="3" targetName="Gain"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_events" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_graphics" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_data_structures" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_gui_basics" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_gui_extra" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_cryptography" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_video" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_opengl" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_basics" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_devices" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_formats" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_processors" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="..\..\Documents\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_cryptography" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_video" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_opengl" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_basics" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="..\..\Visual Studio 2015\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="..\..\Visual Studio 2015\JUCE\modules"/>
       </MODULEPATHS>
     </VS2015>
   </EXPORTFORMATS>
@@ -80,4 +78,7 @@
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
 </JUCERPROJECT>

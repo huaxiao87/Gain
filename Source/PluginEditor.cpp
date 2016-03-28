@@ -22,19 +22,9 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
 	setSize(200, 200);
 
 	// these define the parameters of our slider object
-	m_sliderVolume.setSliderStyle(Slider::LinearBarVertical);
-	m_sliderVolume.setRange(0.0, 1.0, 0.01);
-	m_sliderVolume.setTextBoxStyle(Slider::NoTextBox, false, 90, 0);
-	m_sliderVolume.setPopupDisplayEnabled(true, this);
-	//m_sliderVolume.setTextValueSuffix("Volume");
-	m_sliderVolume.setValue(1.0);
 
-	// this function adds the slider to the editor
-	addAndMakeVisible(&m_sliderVolume);
-
-	// add the listener to the slider
-	m_sliderVolume.addListener(this);
-
+	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 10, 20, 20, 100);
+	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 40, 20, 20, 100);
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -53,18 +43,38 @@ void GainAudioProcessorEditor::paint (Graphics& g)
 	// set the font size and draw text to the screen
 	g.setFont(15.0f);
 
-	g.drawFittedText("Volume", 0, 0, getWidth(), 30, Justification::centred, 1);
+	g.drawFittedText("Amplitude", 10, 20, getWidth(), 30, Justification::centred, 1);
+	g.drawFittedText("Frequency", 40, 20, getWidth(), 30, Justification::centred, 1);
+
 }
 
 void GainAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
-	// sets the position and size of the slider with arguments (x, y, width, height)
-	m_sliderVolume.setBounds(40, 30, 20, getHeight() - 60);
+	m_sliderModulationAmplitude.setBounds(40, 30, 20, getHeight() - 60);
 }
 
 void GainAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
-	processor.m_fVolume = m_sliderVolume.getValue();
+	processor.m_fModulationFAmplitude = m_sliderModulationAmplitude.getValue();
+	processor.m_fModulationFrequency = m_sliderModulationFrequency.getValue();
+}
+void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height)
+{
+	slider.setSliderStyle(Slider::LinearBarVertical);
+	slider.setRange(minValue, maxValue, step);
+	slider.setTextBoxStyle(Slider::NoTextBox, false, 90, 0);
+	slider.setPopupDisplayEnabled(true, this);
+	//m_sliderModulationAmplitude.setTextValueSuffix("Volume");
+	slider.setValue(1.0);
+
+	// this function adds the slider to the editor
+	addAndMakeVisible(&slider);
+
+	// add the listener to the slider
+	slider.addListener(this);
+
+	// sets the position and size of the slider with arguments (x, y, width, height)
+	slider.setBounds(x, y, width, getHeight() - 60);
 }

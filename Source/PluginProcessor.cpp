@@ -112,7 +112,7 @@ void GainAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& mi
         // ..do something to the data....
 			for (int sampleIndex = 0;sampleIndex < buffer.getNumSamples();sampleIndex++)
 			{
-				channelData[sampleIndex] *= 0.1;
+				channelData[sampleIndex] *= m_fVolume;
 			}
     }
 }

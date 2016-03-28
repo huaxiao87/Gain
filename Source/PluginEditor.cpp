@@ -10,15 +10,31 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+
 
 
 //==============================================================================
 GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (400, 300);
+	// This is where our plugin’s editor size is set.
+	setSize(200, 200);
+
+	// these define the parameters of our slider object
+	m_sliderVolume.setSliderStyle(Slider::LinearBarVertical);
+	m_sliderVolume.setRange(0.0, 1.0, 0.01);
+	m_sliderVolume.setTextBoxStyle(Slider::NoTextBox, false, 90, 0);
+	m_sliderVolume.setPopupDisplayEnabled(true, this);
+	//m_sliderVolume.setTextValueSuffix("Volume");
+	m_sliderVolume.setValue(1.0);
+
+	// this function adds the slider to the editor
+	addAndMakeVisible(&m_sliderVolume);
+
+	// add the listener to the slider
+	m_sliderVolume.addListener(this);
+
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -28,15 +44,27 @@ GainAudioProcessorEditor::~GainAudioProcessorEditor()
 //==============================================================================
 void GainAudioProcessorEditor::paint (Graphics& g)
 {
-    g.fillAll (Colours::white);
+	// fill the whole window white
+	g.fillAll(Colours::white);
 
-    g.setColour (Colours::black);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
+	// set the current drawing colour to black
+	g.setColour(Colours::black);
+
+	// set the font size and draw text to the screen
+	g.setFont(15.0f);
+
+	g.drawFittedText("Volume", 0, 0, getWidth(), 30, Justification::centred, 1);
 }
 
 void GainAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+	// sets the position and size of the slider with arguments (x, y, width, height)
+	m_sliderVolume.setBounds(40, 30, 20, getHeight() - 60);
+}
+
+void GainAudioProcessorEditor::sliderValueChanged(Slider* slider)
+{
+	processor.m_fVolume = m_sliderVolume.getValue();
 }

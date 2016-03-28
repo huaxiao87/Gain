@@ -13,12 +13,14 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "MainComponent.h"
 
 
 //==============================================================================
 /**
 */
-class GainAudioProcessorEditor  : public AudioProcessorEditor
+class GainAudioProcessorEditor  : public AudioProcessorEditor,
+								  private Slider::Listener
 {
 public:
     GainAudioProcessorEditor (GainAudioProcessor&);
@@ -28,10 +30,16 @@ public:
     void paint (Graphics&) override;
     void resized() override;
 
+	void sliderValueChanged(Slider* slider) override;
+
+	Slider m_sliderVolume;
+
+
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     GainAudioProcessor& processor;
+
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GainAudioProcessorEditor)
 };

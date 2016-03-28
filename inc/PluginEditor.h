@@ -31,8 +31,15 @@ public:
 
 	void sliderValueChanged(Slider* slider) override;
 	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height);
-	Slider m_sliderModulationAmplitude;
-	Slider m_sliderModulationFrequency;
+    void initializeLabel(Slider &slider, Label &label, const String & name);
+    
+	Slider     m_sliderModulationAmplitude;
+	Slider     m_sliderModulationFrequency;
+    Label      m_frequencyLabel;
+    Label      m_durationLabel;
+    TextButton m_timeButton;
+    Label      m_ampLabel;
+    Label      m_freqLabel;
 
 
 private:

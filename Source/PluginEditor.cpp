@@ -23,8 +23,10 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
 
 	// these define the parameters of our slider object
 
-	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 10, 20, 20, 100);
-	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 40, 20, 20, 100);
+	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 10, 50, 40, 100);
+	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 70, 50, 40, 100);
+    initializeLabel(m_sliderModulationAmplitude, m_ampLabel, "Amp");
+    initializeLabel(m_sliderModulationFrequency, m_freqLabel, "Freq");
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -43,8 +45,8 @@ void GainAudioProcessorEditor::paint (Graphics& g)
 	// set the font size and draw text to the screen
 	g.setFont(15.0f);
 
-	g.drawFittedText("Amplitude", 10, 20, getWidth(), 30, Justification::centred, 1);
-	g.drawFittedText("Frequency", 40, 20, getWidth(), 30, Justification::centred, 1);
+//	g.drawFittedText("Amplitude", 10, 20, getWidth(), 30, Justification::centred, 1);
+//	g.drawFittedText("Frequency", 40, 40, getWidth(), 30, Justification::centred, 1);
 
 }
 
@@ -78,3 +80,12 @@ void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, 
 	// sets the position and size of the slider with arguments (x, y, width, height)
 	slider.setBounds(x, y, width, getHeight() - 60);
 }
+
+void GainAudioProcessorEditor::initializeLabel(Slider &slider, Label &label, const String & name)
+{
+    addAndMakeVisible (&label);
+    label.setText (name, dontSendNotification);
+    label.attachToComponent (&slider, false);
+}
+
+

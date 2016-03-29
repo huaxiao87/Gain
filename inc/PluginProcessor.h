@@ -12,6 +12,8 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Vibrato.h"
+
 
 
 //==============================================================================
@@ -58,11 +60,24 @@ public:
 	float m_fVolume;
 	float m_fModulationFAmplitude;
 	float m_fModulationFrequency;
+	bool            m_bIsBypassed;
+
+
 
 
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GainAudioProcessor)
+	//==============================================================================
+
+	CVibrato *m_cVibrato;
+	Error_t m_errorCheck;
+
+	float			m_fSampleRateInHz = 44100;
+	float           m_fValueModulationAmplitude;
+	float           m_fValueModulationFrequency;
+	String          m_sContentModulationAmplitude;
+	String          m_sContentModulationFrequency;
 };
 
 

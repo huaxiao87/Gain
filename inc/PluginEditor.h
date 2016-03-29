@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "Vibrato.h"
 
 
 //==============================================================================
@@ -44,11 +45,7 @@ public:
     Label           m_labelModulationFrequency;
     ToggleButton    m_toggleBypass;
     
-    float           m_fValueModulationAmplitude;
-    float           m_fValueModulationFrequency;
-    String          m_sContentModulationAmplitude;
-    String          m_sContentModulationFrequency;
-    bool            m_bIsBypassed;
+
 
 
 private:

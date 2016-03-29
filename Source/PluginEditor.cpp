@@ -110,8 +110,10 @@ void GainAudioProcessorEditor::initializeToggleButton(ToggleButton &toggle, int 
 
 void GainAudioProcessorEditor::buttonClicked (Button* button)
 {
+
+	processor.m_bIsBypassed = m_toggleBypass.getToggleState();
     String a;
-    if (m_toggleBypass.getToggleState() == 1){
+    if (processor.m_bIsBypassed == 1){
         a  = "One";
     }
     else{

@@ -19,7 +19,8 @@
 /**
 */
 class GainAudioProcessorEditor  : public AudioProcessorEditor,
-								  private Slider::Listener
+								  private Slider::Listener,
+                                  public Button::Listener
 {
 public:
     GainAudioProcessorEditor (GainAudioProcessor&);
@@ -28,6 +29,8 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
+    void buttonClicked (Button* button) override ;
+    
 
 	void sliderValueChanged(Slider* slider) override;
 	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix);
@@ -35,14 +38,17 @@ public:
     void initializeButton(TextButton &button, int x, int y);
     void initializeToggleButton(ToggleButton &toggle, int x, int y);
     
-	Slider       m_sliderModulationAmplitude;
-	Slider       m_sliderModulationFrequency;
-    Label        m_frequencyLabel;
-    Label        m_durationLabel;
-    TextButton   m_timeButton;
-    Label        m_ampLabel;
-    Label        m_freqLabel;
-    ToggleButton m_toggleButton;
+    Slider          m_sliderModulationAmplitude;
+    Slider          m_sliderModulationFrequency;
+    Label           m_labelModulationAmplitude;
+    Label           m_labelModulationFrequency;
+    ToggleButton    m_toggleBypass;
+    
+    float           m_fValueModulationAmplitude;
+    float           m_fValueModulationFrequency;
+    String          m_sContentModulationAmplitude;
+    String          m_sContentModulationFrequency;
+    bool            m_bIsBypassed;
 
 
 private:

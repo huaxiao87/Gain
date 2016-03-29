@@ -19,16 +19,16 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
 	// This is where our plugin’s editor size is set.
-	setSize(800, 480);
+	setSize(250, 250);
 
 	// these define the parameters of our slider object
 
-	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 220, 50, 60, 330, "amp");
-	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 520, 50, 60, 330, "Hz");
-    initializeLabel(m_sliderModulationAmplitude, m_ampLabel, " Amp");
-    initializeLabel(m_sliderModulationFrequency, m_freqLabel, " Freq");
-    initializeButton(m_timeButton, 350, 400);
-    initializeToggleButton(m_toggleButton, 100, 100);
+	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 80, 70, 50, 165, "amp");
+	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 150, 70, 50, 165, "Hz");
+    initializeLabel(m_sliderModulationAmplitude, m_labelModulationAmplitude, " Amp");
+    initializeLabel(m_sliderModulationFrequency, m_labelModulationFrequency, " Freq");
+//    initializeButton(m_timeButton, 350, 400);
+    initializeToggleButton(m_toggleBypass, 40, 205);
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -101,9 +101,23 @@ void GainAudioProcessorEditor::initializeButton(TextButton &button, int x, int y
 
 void GainAudioProcessorEditor::initializeToggleButton(ToggleButton &toggle, int x, int y)
 {
+    toggle.addListener (this);
     addAndMakeVisible (&toggle);
-    toggle.setBounds(x, y, 100, 40);
+    toggle.setBounds(x, y, 20, 20);
     
 }
 
+
+void GainAudioProcessorEditor::buttonClicked (Button* button)
+{
+    String a;
+    if (m_toggleBypass.getToggleState() == 1){
+        a  = "One";
+    }
+    else{
+        a = "Zero";
+    }
+    
+    m_labelModulationAmplitude.setText(a, dontSendNotification);
+}
 

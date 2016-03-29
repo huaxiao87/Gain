@@ -36,13 +36,16 @@ public:
 	void sliderValueChanged(Slider* slider) override;
 	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix);
     void initializeLabel(Slider &slider, Label &label, const String & name);
+    void initializeLabel(Button &button, Label &label, const String & name);
     void initializeButton(TextButton &button, int x, int y);
     void initializeToggleButton(ToggleButton &toggle, int x, int y);
+    
     
     Slider          m_sliderModulationAmplitude;
     Slider          m_sliderModulationFrequency;
     Label           m_labelModulationAmplitude;
     Label           m_labelModulationFrequency;
+    Label           m_labelBypass;
     ToggleButton    m_toggleBypass;
     
 

@@ -23,12 +23,13 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
 
 	// these define the parameters of our slider object
 
-	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 80, 70, 50, 165, "amp");
-	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 150, 70, 50, 165, "Hz");
+	initializeSlider(m_sliderModulationAmplitude, 0.0, 1.0, 0.01, 100, 70, 50, 165, "amp");
+	initializeSlider(m_sliderModulationFrequency, 0.0, 1.0, 0.01, 170, 70, 50, 165, "Hz");
     initializeLabel(m_sliderModulationAmplitude, m_labelModulationAmplitude, " Amp");
     initializeLabel(m_sliderModulationFrequency, m_labelModulationFrequency, " Freq");
 //    initializeButton(m_timeButton, 350, 400);
-    initializeToggleButton(m_toggleBypass, 40, 205);
+    initializeToggleButton(m_toggleBypass, 10, 205);
+    initializeLabel(m_toggleBypass, m_labelBypass, "Bypass");
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -92,6 +93,13 @@ void GainAudioProcessorEditor::initializeLabel(Slider &slider, Label &label, con
     label.attachToComponent (&slider, false);
 }
 
+void GainAudioProcessorEditor::initializeLabel(Button &button, Label &label, const String & name)
+{
+    addAndMakeVisible (&label);
+    label.setText (name, dontSendNotification);
+    label.attachToComponent (&button, false);
+}
+
 void GainAudioProcessorEditor::initializeButton(TextButton &button, int x, int y)
 {
     addAndMakeVisible (&button);
@@ -103,7 +111,7 @@ void GainAudioProcessorEditor::initializeToggleButton(ToggleButton &toggle, int 
 {
     toggle.addListener (this);
     addAndMakeVisible (&toggle);
-    toggle.setBounds(x, y, 20, 20);
+    toggle.setBounds(x, y, 80, 20);
     
 }
 
@@ -114,12 +122,12 @@ void GainAudioProcessorEditor::buttonClicked (Button* button)
 	processor.m_bIsBypassed = m_toggleBypass.getToggleState();
     String a;
     if (processor.m_bIsBypassed == 1){
-        a  = "One";
+        a  = "Bypass Yes";
     }
     else{
-        a = "Zero";
+        a = "Bypass No";
     }
     
-    m_labelModulationAmplitude.setText(a, dontSendNotification);
+    m_labelBypass.setText(a, dontSendNotification);
 }
 

@@ -28,6 +28,7 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
     initializeLabel(m_sliderModulationAmplitude, m_ampLabel, " Amp");
     initializeLabel(m_sliderModulationFrequency, m_freqLabel, " Freq");
     initializeButton(m_timeButton, 350, 400);
+    initializeToggleButton(m_toggleButton, 100, 100);
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -67,7 +68,7 @@ void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, 
 {
 	slider.setSliderStyle(Slider::LinearBarVertical);
 	slider.setRange(minValue, maxValue, step);
-	slider.setTextBoxStyle(Slider::NoTextBox, false, 90, 0);
+//	slider.setTextBoxStyle(Slider::NoTextBox, false, 90, 0);
 	slider.setPopupDisplayEnabled(true, this);
 	//m_sliderModulationAmplitude.setTextValueSuffix("Volume");
 	slider.setValue(1.0);
@@ -96,6 +97,13 @@ void GainAudioProcessorEditor::initializeButton(TextButton &button, int x, int y
     addAndMakeVisible (&button);
     button.setButtonText ("Just a button");
     button.setBounds(x, y, 100, 40);
+}
+
+void GainAudioProcessorEditor::initializeToggleButton(ToggleButton &toggle, int x, int y)
+{
+    addAndMakeVisible (&toggle);
+    toggle.setBounds(x, y, 100, 40);
+    
 }
 
 

@@ -11,7 +11,7 @@
 #include "../inc/PluginProcessor.h"
 #include "../inc/PluginEditor.h"
 #define MIN_MOD_FREQ 0.0
-#define MAX_MOD_FREQ 40.0
+#define MAX_MOD_FREQ 10.0
 #define DEFAULT_MOD_FREQ 3.0
 
 #define MIN_MOD_AMP 0.0
@@ -102,6 +102,9 @@ void GainAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 	m_iNumChannels = std::max(getTotalNumInputChannels(), getTotalNumOutputChannels());
 	m_errorCheck = CVibrato::createInstance(m_cVibrato);
 	m_errorCheck = m_cVibrato->initInstance(MAX_MOD_AMP, sampleRate, m_iNumChannels);//may cause crash
+	m_cVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidthInS, 0.01);
+	m_cVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreqInHz, 8.0);
+
 	setParameter(0, getParameterDefaultValue(0));
 	setParameter(1, getParameterDefaultValue(1));
 }
@@ -157,16 +160,19 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new GainAudioProcessor();
 }
-void GainAudioProcessor::setParameters()
+void GainAudioProcessor::setParam(int parameterIndex)
 {
-	if (m_bParamUpdated)
-	{
-		m_cVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreqInHz);
-		m_cVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidthInS);
-		m_bParamUpdated = false;
-	}
-	else
-	{
-		return;
-	}
+
+		switch (parameterIndex)
+		{
+		case 0:
+			m_cVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidthInS, m_fValueModulationAmplitude);
+			break;
+		case 1:
+			m_cVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreqInHz, m_fValueModulationFrequency);
+			break;
+		default:
+			break;
+		}
+
 }

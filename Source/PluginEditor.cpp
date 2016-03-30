@@ -23,8 +23,8 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
 
 	// these define the parameters of our slider object
 
-	initializeSlider(m_sliderModulationAmplitude, 0.0, 10.0, 0.1, 100, 70, 50, 165, "amp");
-	initializeSlider(m_sliderModulationFrequency, 0.0, 10.0, 0.1, 170, 70, 50, 165, "Hz");
+	initializeSlider(m_sliderModulationAmplitude, 0.0, 1, 0.01, 100, 70, 50, 165, " ");
+	initializeSlider(m_sliderModulationFrequency, 0.0, 10.0, 0.1, 170, 70, 50, 165, " Hz");
     initializeLabel(m_sliderModulationAmplitude, m_labelModulationAmplitude, " Amp");
     initializeLabel(m_sliderModulationFrequency, m_labelModulationFrequency, " Freq");
 //    initializeButton(m_timeButton, 350, 400);
@@ -62,12 +62,32 @@ void GainAudioProcessorEditor::resized()
 
 void GainAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
-	//processor.m_fModulationFAmplitude = m_sliderModulationAmplitude.getValue();
-	processor.setParameter(1, m_sliderModulationAmplitude.getValue());
-	processor.m_fModulationFrequency = m_sliderModulationFrequency.getValue();
-	processor.setParameter(0, m_sliderModulationFrequency.getValue());
-
+	processor.m_bParamUpdated = true;
+	processor.m_fValueModulationAmplitude = m_sliderModulationAmplitude.getValue();
+	processor.m_fValueModulationFrequency = m_sliderModulationFrequency.getValue();
+	int numParameters = 2;
+	for (int i = 0;i < numParameters;i++)
+	{
+		processor.setParam(i);
+	}
 }
+
+void GainAudioProcessorEditor::buttonClicked(Button* button)
+{
+
+	processor.m_bIsBypassed = m_toggleBypass.getToggleState();
+	String a;
+	if (processor.m_bIsBypassed == 1) {
+		a = "Bypass Yes";
+	}
+	else {
+		a = "Bypass No";
+	}
+
+	m_labelBypass.setText(a, dontSendNotification);
+}
+
+
 void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix)
 {
 	slider.setSliderStyle(Slider::LinearBarVertical);
@@ -103,12 +123,6 @@ void GainAudioProcessorEditor::initializeLabel(Button &button, Label &label, con
     label.attachToComponent (&button, false);
 }
 
-void GainAudioProcessorEditor::initializeButton(TextButton &button, int x, int y)
-{
-    addAndMakeVisible (&button);
-    button.setButtonText ("Just a button");
-    button.setBounds(x, y, 100, 40);
-}
 
 void GainAudioProcessorEditor::initializeToggleButton(ToggleButton &toggle, int x, int y)
 {
@@ -118,19 +132,4 @@ void GainAudioProcessorEditor::initializeToggleButton(ToggleButton &toggle, int 
     
 }
 
-
-void GainAudioProcessorEditor::buttonClicked (Button* button)
-{
-
-	processor.m_bIsBypassed = m_toggleBypass.getToggleState();
-    String a;
-    if (processor.m_bIsBypassed == 1){
-        a  = "Bypass Yes";
-    }
-    else{
-        a = "Bypass No";
-    }
-    
-    m_labelBypass.setText(a, dontSendNotification);
-}
 

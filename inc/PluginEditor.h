@@ -37,7 +37,6 @@ public:
 	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix);
     void initializeLabel(Slider &slider, Label &label, const String & name);
     void initializeLabel(Button &button, Label &label, const String & name);
-    void initializeButton(TextButton &button, int x, int y);
     void initializeToggleButton(ToggleButton &toggle, int x, int y);
     
     

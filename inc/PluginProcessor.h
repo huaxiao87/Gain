@@ -57,11 +57,13 @@ public:
 
 
 	//==============================================================================
-	float m_fVolume;
-	float m_fModulationFAmplitude;
-	float m_fModulationFrequency;
-	bool  m_bIsBypassed;
+	void setParam(int parameterIndex);
 
+	float m_fVolume;
+	float m_fValueModulationAmplitude;
+	float m_fValueModulationFrequency;
+	bool  m_bIsBypassed;
+	bool  m_bParamUpdated;
 
 
 
@@ -69,14 +71,13 @@ private:
     //==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GainAudioProcessor)
 		//==============================================================================
-		void setParameters();
 	CVibrato *m_cVibrato;
 	Error_t m_errorCheck;
 
+
 	int			    m_iNumChannels;
 	float			m_fSampleRateInHz = 44100;
-	float           m_fValueModulationAmplitude;
-	float           m_fValueModulationFrequency;
+
 	String          m_sContentModulationAmplitude;
 	String          m_sContentModulationFrequency;
 	AudioParameterFloat* m_audioParaModulationAmplitude;

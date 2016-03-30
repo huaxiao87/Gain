@@ -27,6 +27,7 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
 	initializeSlider(m_sliderModulationFrequency, 0.0, 10.0, 0.1, 170, 70, 50, 165, " Hz");
     initializeLabel(m_sliderModulationAmplitude, m_labelModulationAmplitude, " Amp");
     initializeLabel(m_sliderModulationFrequency, m_labelModulationFrequency, " Freq");
+    initializeLabel(m_labelTitle, "Vibrato", 95, 5);
 //    initializeButton(m_timeButton, 350, 400);
     initializeToggleButton(m_toggleBypass, 10, 205);
     initializeLabel(m_toggleBypass, m_labelBypass, "Bypass");
@@ -122,6 +123,12 @@ void GainAudioProcessorEditor::initializeLabel(Button &button, Label &label, con
     label.setText (name, dontSendNotification);
     label.attachToComponent (&button, false);
 }
+
+void GainAudioProcessorEditor::initializeLabel(Label &label, const String & name, int x, int y)
+{
+    addAndMakeVisible (&label);
+    label.setText (name, dontSendNotification);
+    label.setBounds(x, y, 100, 50);}
 
 
 void GainAudioProcessorEditor::initializeToggleButton(ToggleButton &toggle, int x, int y)

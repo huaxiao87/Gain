@@ -37,6 +37,7 @@ public:
 	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix);
     void initializeLabel(Slider &slider, Label &label, const String & name);
     void initializeLabel(Button &button, Label &label, const String & name);
+    void initializeLabel(Label &label, const String & name, int x, int y);
     void initializeToggleButton(ToggleButton &toggle, int x, int y);
     
     
@@ -45,6 +46,7 @@ public:
     Label           m_labelModulationAmplitude;
     Label           m_labelModulationFrequency;
     Label           m_labelBypass;
+    Label           m_labelTitle;
     ToggleButton    m_toggleBypass;
     
 

@@ -44,20 +44,12 @@ const String GainAudioProcessor::getName() const
 
 bool GainAudioProcessor::acceptsMidi() const
 {
-   #if JucePlugin_WantsMidiInput
-    return true;
-   #else
     return false;
-   #endif
 }
 
 bool GainAudioProcessor::producesMidi() const
 {
-   #if JucePlugin_ProducesMidiOutput
-    return true;
-   #else
     return false;
-   #endif
 }
 
 bool GainAudioProcessor::silenceInProducesSilenceOut() const

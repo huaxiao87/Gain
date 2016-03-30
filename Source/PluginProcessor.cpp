@@ -10,15 +10,29 @@
 
 #include "../inc/PluginProcessor.h"
 #include "../inc/PluginEditor.h"
+#define MIN_MOD_FREQ 0.0
+#define MAX_MOD_FREQ 40.0
+#define DEFAULT_MOD_FREQ 3.0
+
+#define MIN_MOD_AMP 0.0
+#define MAX_MOD_AMP 1.0
+#define DEFAULT_MOD_AMP 0.1
 
 
 //==============================================================================
 GainAudioProcessor::GainAudioProcessor()
 {
+	m_bIsBypassed = false;
+	m_cVibrato = 0;
+	m_audioParaModulationAmplitude= new AudioParameterFloat("Mod Freq", "Modulation Frequency", MIN_MOD_FREQ, MAX_MOD_FREQ, DEFAULT_MOD_FREQ);
+	addParameter(m_audioParaModulationAmplitude);
+	m_audioParaModulationFrequency= new AudioParameterFloat("Mod Freq", "Modulation Frequency", MIN_MOD_AMP, MAX_MOD_AMP, DEFAULT_MOD_AMP);
+	addParameter(m_audioParaModulationFrequency);
 }
 
 GainAudioProcessor::~GainAudioProcessor()
 {
+	CVibrato::destroyInstance(m_cVibrato);
 }
 
 //==============================================================================
@@ -84,6 +98,13 @@ void GainAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+	m_iNumChannels = std::max(getTotalNumInputChannels(), getTotalNumOutputChannels());
+	m_errorCheck = CVibrato::createInstance(m_cVibrato);
+	m_errorCheck = m_cVibrato->initInstance(MAX_MOD_AMP, sampleRate, m_iNumChannels);//may cause crash
+	setParameter(0, getParameterDefaultValue(0));
+	setParameter(1, getParameterDefaultValue(1));
+
+
 }
 
 void GainAudioProcessor::releaseResources()

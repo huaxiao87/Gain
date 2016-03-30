@@ -16,7 +16,7 @@
 
 #define MIN_MOD_AMP 0.0
 #define MAX_MOD_AMP 1.0
-#define DEFAULT_MOD_AMP 0.1
+#define DEFAULT_MOD_AMP 0.01
 
 
 //==============================================================================
@@ -104,8 +104,6 @@ void GainAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 	m_errorCheck = m_cVibrato->initInstance(MAX_MOD_AMP, sampleRate, m_iNumChannels);//may cause crash
 	setParameter(0, getParameterDefaultValue(0));
 	setParameter(1, getParameterDefaultValue(1));
-
-
 }
 
 void GainAudioProcessor::releaseResources()
@@ -116,27 +114,16 @@ void GainAudioProcessor::releaseResources()
 
 void GainAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
-    // In case we have more outputs than inputs, this code clears any output
-    // channels that didn't contain input data, (because these aren't
-    // guaranteed to be empty - they may contain garbage).
-    // I've added this to avoid people getting screaming feedback
-    // when they first compile the plugin, but obviously you don't need to
-    // this code if your algorithm already fills all the output channels.
-    for (int i = getNumInputChannels(); i < getNumOutputChannels(); ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
-
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    for (int channel = 0; channel < getNumInputChannels(); ++channel)
-    {
-        float* channelData = buffer.getWritePointer (channel);
-
-        // ..do something to the data....
-			for (int sampleIndex = 0;sampleIndex < buffer.getNumSamples();sampleIndex++)
-			{
-				channelData[sampleIndex] *= m_fVolume;
-			}
-    }
+	if (m_bIsBypassed)
+	{
+		processBlockBypassed(buffer, midiMessages);
+		return;
+	}
+	else
+	{
+		float** m_ppWritePointer = buffer.getArrayOfWritePointers();
+		m_cVibrato->process(m_ppWritePointer, m_ppWritePointer, buffer.getNumSamples());
+	}
 }
 
 //==============================================================================
@@ -169,4 +156,17 @@ void GainAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new GainAudioProcessor();
+}
+void GainAudioProcessor::setParameters()
+{
+	if (m_bParamUpdated)
+	{
+		m_cVibrato->setParam(CVibrato::VibratoParam_t::kParamModFreqInHz);
+		m_cVibrato->setParam(CVibrato::VibratoParam_t::kParamModWidthInS);
+		m_bParamUpdated = false;
+	}
+	else
+	{
+		return;
+	}
 }

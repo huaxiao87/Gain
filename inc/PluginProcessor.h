@@ -67,9 +67,9 @@ public:
 
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GainAudioProcessor)
-	//==============================================================================
-
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GainAudioProcessor)
+		//==============================================================================
+		void setParameters();
 	CVibrato *m_cVibrato;
 	Error_t m_errorCheck;
 
@@ -81,6 +81,8 @@ private:
 	String          m_sContentModulationFrequency;
 	AudioParameterFloat* m_audioParaModulationAmplitude;
 	AudioParameterFloat* m_audioParaModulationFrequency;
+
+	float **m_ppWritePointer;
 };
 
 

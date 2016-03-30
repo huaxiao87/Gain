@@ -25,9 +25,10 @@ GainAudioProcessor::GainAudioProcessor()
 	m_bIsBypassed = false;
 	m_cVibrato = 0;
 	m_audioParaModulationAmplitude= new AudioParameterFloat("Mod Freq", "Modulation Frequency", MIN_MOD_FREQ, MAX_MOD_FREQ, DEFAULT_MOD_FREQ);
-	addParameter(m_audioParaModulationAmplitude);
 	m_audioParaModulationFrequency= new AudioParameterFloat("Mod Freq", "Modulation Frequency", MIN_MOD_AMP, MAX_MOD_AMP, DEFAULT_MOD_AMP);
+	addParameter(m_audioParaModulationAmplitude);
 	addParameter(m_audioParaModulationFrequency);
+
 }
 
 GainAudioProcessor::~GainAudioProcessor()

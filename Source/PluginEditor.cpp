@@ -19,7 +19,7 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
 	// This is where our plugin’s editor size is set.
-	setSize(250, 250);
+	setSize(250, 280);
 
 	// these define the parameters of our slider object
 
@@ -31,6 +31,10 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
 //    initializeButton(m_timeButton, 350, 400);
     initializeToggleButton(m_toggleBypass, 10, 205);
     initializeLabel(m_toggleBypass, m_labelBypass, "Bypass");
+    
+//    Rectangle< int >::Rectangle	(100,100,100,100);
+    
+    
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -49,6 +53,13 @@ void GainAudioProcessorEditor::paint (Graphics& g)
 	// set the font size and draw text to the screen
 	g.setFont(15.0f);
 
+    g.setColour (Colours::black);
+    g.fillRect(10, 250, 210, 20);
+    
+    g.setColour (Colours::green);
+    g.fillRect(10, 250, 70, 20);
+    
+    
 //	g.drawFittedText("Amplitude", 10, 20, getWidth(), 30, Justification::centred, 1);
 //	g.drawFittedText("Frequency", 40, 40, getWidth(), 30, Justification::centred, 1);
 

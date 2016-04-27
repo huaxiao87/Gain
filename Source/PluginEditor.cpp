@@ -34,8 +34,7 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
     initializeLabel(m_toggleBypass, m_labelBypass, "Bypass");
     
 //    Rectangle< int >::Rectangle	(100,100,100,100);
-    
-    
+    Timer::startTimer(10);
 }
 
 GainAudioProcessorEditor::~GainAudioProcessorEditor()
@@ -60,24 +59,27 @@ void GainAudioProcessorEditor::paint (Graphics& g)
 //    g.setColour (Colours::green);
 //    g.fillRect(10, 250, 70, 20);
 //    
-    int iPeakL1 = processor.getPeak(0);
-    int iPeakR1 = processor.getPeak(1);
+    int iPeakL = (int)roundFloatToInt(processor.getPeak(0))+88;
+    int iPeakR = (int)roundFloatToInt(processor.getPeak(1))+88;
     
-    int iPeakL = 50;
-    int iPeakR = 80;
+//    int iPeakL = 50;
+//    int iPeakR = 80;
     
     g.setColour (Colours::black);
-    g.fillRect(10, 250, 210, 20);
+    g.fillRect(122, 250, 88, 20);
     
     g.setColour (Colours::green);
-    g.fillRect(10, 250, iPeakL, 20);
+    g.fillRect(122, 250, iPeakL, 20);
     
 
     g.setColour (Colours::black);
-    g.fillRect(10, 280, 210, 20);
+    g.fillRect(122, 280, 88, 20);
     
     g.setColour (Colours::green);
-    g.fillRect(10, 280, iPeakR , 20);
+    g.fillRect(122, 280, iPeakR , 20);
+    
+//    m_labelBypass.setText (std::to_string(iPeakL), dontSendNotification);
+
 
 }
 
@@ -119,6 +121,8 @@ void GainAudioProcessorEditor::buttonClicked(Button* button)
 void GainAudioProcessorEditor::timerCallback (){
     repaint();
 }
+
+
 
 
 void GainAudioProcessorEditor::initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix)

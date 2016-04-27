@@ -116,7 +116,7 @@ void CPeakMeter::calculatePeak(float **pp_fAudioBlock, float fAlphaAT, float fAl
 void CPeakMeter::process(float **pp_fAudioBlock) 
 {
 
-	for (int c = 0; c<m_iNumChannels; c++) 
+	for (int c = 0; c<m_iNumChannels; c++)
 	{
 		m_fMaxAmplitude[c] = 0.0;
 		for (int i = 0; i < m_iBlockLength; i++) 

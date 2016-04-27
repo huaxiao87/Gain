@@ -20,7 +20,7 @@ GainAudioProcessorEditor::GainAudioProcessorEditor (GainAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
 	// This is where our plugin’s editor size is set.
-	setSize(250, 280);
+	setSize(250, 320);
 
 	// these define the parameters of our slider object
 
@@ -54,22 +54,30 @@ void GainAudioProcessorEditor::paint (Graphics& g)
 	// set the font size and draw text to the screen
 	g.setFont(15.0f);
 
+//    g.setColour (Colours::black);
+//    g.fillRect(10, 250, 210, 20);
+//    
+//    g.setColour (Colours::green);
+//    g.fillRect(10, 250, 70, 20);
+    
+    int iPeakL = processor.getLeftPeak();
+    int iPeakR = processor.getRightPeak();
+    
+//    int iPeakL = 50;
+//    int iPeakR = 80;
+    
     g.setColour (Colours::black);
     g.fillRect(10, 250, 210, 20);
     
     g.setColour (Colours::green);
-    g.fillRect(10, 250, 70, 20);
-    
-    float fPeakL = processor.getPeak(0);
-    float fPeakR = processor.getPeak(1);
-    
-    g.setColour (Colours::black);
-    g.fillRect(10, 250, 210, 20);
-    
-    g.setColour (Colours::green);
-    g.fillRect(10, 250, 70, 20);
+    g.fillRect(10, 250, iPeakL, 20);
     
 
+    g.setColour (Colours::black);
+    g.fillRect(10, 280, 210, 20);
+    
+    g.setColour (Colours::green);
+    g.fillRect(10, 280, iPeakR, 20);
 
 }
 

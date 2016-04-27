@@ -9,7 +9,7 @@
               pluginIsMidiEffectPlugin="0" pluginSilenceInIsSilenceOut="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="GainAU" pluginRTASCategory=""
               aaxIdentifier="com.yourcompany.Gain" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
-              jucerVersion="4.2.1" buildAUv3="0">
+              jucerVersion="4.1.0" buildAUv3="0">
   <MAINGROUP id="xSZ4m1" name="Gain">
     <GROUP id="{D5023CC6-54EC-163D-9FEE-69E2ECEDCCEC}" name="Includes">
       <FILE id="lPWHOF" name="PPM.h" compile="0" resource="0" file="inc/PPM.h"/>

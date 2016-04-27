@@ -174,3 +174,11 @@ void GainAudioProcessor::setParam(int parameterIndex)
 		}
 
 }
+float GainAudioProcessor::getLeftPeak()
+{
+	return m_fPeakL;
+}
+float GainAudioProcessor::getRightPeak()
+{
+	return m_fPeakR;
+}

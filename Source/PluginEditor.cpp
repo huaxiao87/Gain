@@ -10,6 +10,7 @@
 
 #include "../inc/PluginProcessor.h"
 #include "../inc/PluginEditor.h"
+
 #include "../JuceLibraryCode/JuceHeader.h"
 
 
@@ -59,9 +60,16 @@ void GainAudioProcessorEditor::paint (Graphics& g)
     g.setColour (Colours::green);
     g.fillRect(10, 250, 70, 20);
     
+    float fPeakL = processor.getPeak(0);
+    float fPeakR = processor.getPeak(1);
     
-//	g.drawFittedText("Amplitude", 10, 20, getWidth(), 30, Justification::centred, 1);
-//	g.drawFittedText("Frequency", 40, 40, getWidth(), 30, Justification::centred, 1);
+    g.setColour (Colours::black);
+    g.fillRect(10, 250, 210, 20);
+    
+    g.setColour (Colours::green);
+    g.fillRect(10, 250, 70, 20);
+    
+
 
 }
 
@@ -97,6 +105,11 @@ void GainAudioProcessorEditor::buttonClicked(Button* button)
 	}
 
 	m_labelBypass.setText(a, dontSendNotification);
+}
+
+
+void GainAudioProcessorEditor::timerCallback (){
+    repaint();
 }
 
 

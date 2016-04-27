@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Vibrato.h"
+#include "PPM.h"
 
 
 
@@ -73,7 +74,8 @@ private:
 		//==============================================================================
 	CVibrato *m_cVibrato;
 	Error_t m_errorCheck;
-
+    
+    CPeakMeter      *m_myPeakMeter;
 
 	int			    m_iNumChannels;
 	float			m_fSampleRateInHz = 44100;

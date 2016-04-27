@@ -21,7 +21,8 @@
 */
 class GainAudioProcessorEditor  : public AudioProcessorEditor,
 								  private Slider::Listener,
-                                  public Button::Listener
+                                  public Button::Listener,
+                                  public Timer::Timer
 {
 public:
     GainAudioProcessorEditor (GainAudioProcessor&);
@@ -30,10 +31,12 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
-    void buttonClicked (Button* button) override ;
     
-
-	void sliderValueChanged(Slider* slider) override;
+    void buttonClicked (Button* button) override ;
+    void sliderValueChanged(Slider* slider) override;
+    void timerCallback() override;
+    
+    
 	void initializeSlider(Slider &slider, float minValue, float maxValue, float step, int x, int y, int width, int height, const String & suffix);
     void initializeLabel(Slider &slider, Label &label, const String & name);
     void initializeLabel(Button &button, Label &label, const String & name);

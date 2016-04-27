@@ -22,6 +22,7 @@
 //==============================================================================
 GainAudioProcessor::GainAudioProcessor()
 {
+    m_myPeakMeter = new CPeakMeter();
 	m_bIsBypassed = false;
 	m_cVibrato = 0;
 	m_audioParaModulationAmplitude= new AudioParameterFloat("Mod Freq", "Modulation Frequency", MIN_MOD_FREQ, MAX_MOD_FREQ, DEFAULT_MOD_FREQ);
@@ -33,6 +34,7 @@ GainAudioProcessor::GainAudioProcessor()
 
 GainAudioProcessor::~GainAudioProcessor()
 {
+    delete m_myPeakMeter;
 	CVibrato::destroyInstance(m_cVibrato);
 }
 
@@ -91,6 +93,7 @@ void GainAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    m_myPeakMeter->init(sampleRate,getTotalNumInputChannels(), samplesPerBlock);
 	m_iNumChannels = std::max(getTotalNumInputChannels(), getTotalNumOutputChannels());
 	m_errorCheck = CVibrato::createInstance(m_cVibrato);
 	m_errorCheck = m_cVibrato->initInstance(MAX_MOD_AMP, sampleRate, m_iNumChannels);//may cause crash
@@ -118,6 +121,7 @@ void GainAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& mi
 	{
 		float** m_ppWritePointer = buffer.getArrayOfWritePointers();
 		m_cVibrato->process(m_ppWritePointer, m_ppWritePointer, buffer.getNumSamples());
+        m_myPeakMeter->calculatePeak(m_ppWritePointer, 0.1, 0.1);
 	}
 }
 

@@ -122,7 +122,6 @@ void GainAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& mi
 	{
 		float** m_ppWritePointer = buffer.getArrayOfWritePointers();
 		m_cVibrato->process(m_ppWritePointer, m_ppWritePointer, buffer.getNumSamples());
-        m_cPeakMeter->process(m_ppWritePointer);
         m_cPeakMeter->calculatePeak(m_ppWritePointer, 0.1, 0.01);
 	}
 }

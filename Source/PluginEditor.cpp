@@ -66,17 +66,17 @@ void GainAudioProcessorEditor::paint (Graphics& g)
 //    int iPeakR = 80;
     
     g.setColour (Colours::black);
-    g.fillRect(122, 250, 88, 20);
+    g.fillRect(116, 250, 94, 20);
     
     g.setColour (Colours::green);
-    g.fillRect(122, 250, iPeakL, 20);
+    g.fillRect(116, 250, iPeakL, 20);
     
 
     g.setColour (Colours::black);
-    g.fillRect(122, 280, 88, 20);
+    g.fillRect(116, 280, 94, 20);
     
     g.setColour (Colours::green);
-    g.fillRect(122, 280, iPeakR , 20);
+    g.fillRect(116, 280, iPeakR , 20);
     
 //    m_labelBypass.setText (std::to_string(iPeakL), dontSendNotification);
 

@@ -4,13 +4,13 @@
 
 CPeakMeter::CPeakMeter() 
 {
-	//Do nothing, call init
 }
 
 CPeakMeter::~CPeakMeter() 
 {
 	reset();
 }
+
 
 Error_t CPeakMeter::init(float fSampleRate, int iNumChannels, int iBlockLength)
 {

@@ -68,18 +68,18 @@ public:
 
 	//==============================================================================
 	//PPM
-	float getLeftPeak();
-	float getRightPeak();
+	float getPeak(int iChannelNum);
 		
 
 private:
     //==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GainAudioProcessor)
 		//==============================================================================
-	CVibrato *m_cVibrato;
+	CVibrato        *m_cVibrato;
+    CPeakMeter      *m_cPeakMeter;
+
 	Error_t m_errorCheck;
     
-    CPeakMeter      *m_myPeakMeter;
 
 	int			    m_iNumChannels;
 	float			m_fSampleRateInHz = 44100;

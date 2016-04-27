@@ -59,12 +59,12 @@ void GainAudioProcessorEditor::paint (Graphics& g)
 //    
 //    g.setColour (Colours::green);
 //    g.fillRect(10, 250, 70, 20);
+//    
+    int iPeakL1 = processor.getPeak(0);
+    int iPeakR1 = processor.getPeak(1);
     
-    int iPeakL = processor.getLeftPeak();
-    int iPeakR = processor.getRightPeak();
-    
-//    int iPeakL = 50;
-//    int iPeakR = 80;
+    int iPeakL = 50;
+    int iPeakR = 80;
     
     g.setColour (Colours::black);
     g.fillRect(10, 250, 210, 20);
@@ -77,7 +77,7 @@ void GainAudioProcessorEditor::paint (Graphics& g)
     g.fillRect(10, 280, 210, 20);
     
     g.setColour (Colours::green);
-    g.fillRect(10, 280, iPeakR, 20);
+    g.fillRect(10, 280, iPeakR , 20);
 
 }
 

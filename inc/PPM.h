@@ -9,13 +9,14 @@ class CPeakMeter
 public:
 	CPeakMeter();
 	virtual ~CPeakMeter();
+
 	Error_t init(float fSampleRate, int iNumChannels, int iBlockLength);
 	void process(float **pp_fAudioBlock);
+    void calculatePeak(float **pp_fAudioBlock, float fAlphaAT, float fAlphaRT);
 	float getPeak(int iChannelNum);
 	float getMaxAmplitude(int iChannelNum);
 	float convertFloatTodB(float fAmplitude);
 	void reset();
-	void calculatePeak(float **pp_fAudioBlock, float fAlphaAT, float fAlphaRT);
 
 private:
 	float   **m_PPMOutput;

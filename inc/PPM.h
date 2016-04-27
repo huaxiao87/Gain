@@ -13,7 +13,6 @@ public:
 	Error_t init(float fSampleRate, int iNumChannels, int iBlockLength);
     void calculatePeak(float **pp_fAudioBlock, float fAlphaAT, float fAlphaRT);
 	float getPeak(int iChannelNum);
-	float getMaxAmplitude(int iChannelNum);
 	float convertFloatTodB(float fAmplitude);
 	void reset();
 

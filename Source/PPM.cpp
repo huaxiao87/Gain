@@ -68,10 +68,6 @@ float CPeakMeter::getPeak(int iChannelNum)
 	return peak;
 }
 
-float CPeakMeter::getMaxAmplitude(int iChannelNum) 
-{
-	return m_fMaxAmplitude[iChannelNum];
-}
 
 float CPeakMeter::convertFloatTodB(float fAmplitude) 
 {

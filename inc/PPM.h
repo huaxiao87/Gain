@@ -25,11 +25,3 @@ private:
 	int     m_iBlockLength;
 	float   m_fSampleRate;
 };
-
-CPeakMeter::CPeakMeter()
-{
-}
-
-CPeakMeter::~CPeakMeter()
-{
-}

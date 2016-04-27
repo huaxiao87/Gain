@@ -11,7 +11,6 @@ CPeakMeter::~CPeakMeter()
 	reset();
 }
 
-
 Error_t CPeakMeter::init(float fSampleRate, int iNumChannels, int iBlockLength)
 {
 	m_iNumChannels = iNumChannels;
@@ -31,7 +30,6 @@ Error_t CPeakMeter::init(float fSampleRate, int iNumChannels, int iBlockLength)
 		m_fLastPeak[i] = 0.0;
 		m_PPMOutput[i] = new float[m_iBlockLength];
 	}
-
 	return kNoError;
 }
 
@@ -48,26 +46,15 @@ void CPeakMeter::reset()
 
 float CPeakMeter::getPeak(int iChannelNum) 
 {
-
 	float peak = m_fLastPeak[iChannelNum];
-	 
-	for (int i = 0; i < m_iBlockLength; i++) 
-	{
-		if (m_PPMOutput[iChannelNum][i] > peak) 
-		{
-			peak = m_PPMOutput[iChannelNum][i];
-		}
-	}
 
-	// Set limit to -100dB
+	// no less than -100dB
 	if (peak < 1e-5) 
 	{
 		peak = 1e-5;
 	}
-
 	return peak;
 }
-
 
 float CPeakMeter::convertFloatTodB(float fAmplitude) 
 {
@@ -81,7 +68,6 @@ float CPeakMeter::convertFloatTodB(float fAmplitude)
 
 void CPeakMeter::calculatePeak(float **pp_fAudioBlock, float fAlphaAT, float fAlphaRT) 
 {
-
 	for (int iChannelNum = 0; iChannelNum<m_iNumChannels; iChannelNum++) 
 	{
 		float fLocalPeak = 0.0;
@@ -106,6 +92,5 @@ void CPeakMeter::calculatePeak(float **pp_fAudioBlock, float fAlphaAT, float fAl
 		}
 		m_fLastPeak[iChannelNum] = fLocalPeak;
 	}
-
 }
 

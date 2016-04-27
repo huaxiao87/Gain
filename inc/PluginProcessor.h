@@ -84,8 +84,12 @@ private:
 	String          m_sContentModulationFrequency;
 	AudioParameterFloat* m_audioParaModulationAmplitude;
 	AudioParameterFloat* m_audioParaModulationFrequency;
+	
 
 	float **m_ppWritePointer;
+	float m_fPeakL;
+	float m_fPeakR;
+
 };
 
 
